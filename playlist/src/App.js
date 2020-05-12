@@ -5,7 +5,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      Here is some stuff
+      Here is some stuff (REACT)
     </div>
   );
 }
