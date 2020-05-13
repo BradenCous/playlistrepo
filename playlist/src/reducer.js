@@ -15,7 +15,7 @@ function reducer(state = initialState, action) {
         case Action.FinishAddingPlaylist:
             return {
                 ...state,
-                playlists: [action.payload, ...state.playlists],
+                playlists: [{...action.payload, isEditing: true}, ...state.playlists],
             };
         case Action.EnterEditMode:
             return {
@@ -49,6 +49,11 @@ function reducer(state = initialState, action) {
                         return playlist;
                     }
                 }),
+            };
+        case Action.FinishDeletingPlaylist:
+            return {
+                    ...state,
+                playlists: state.playlists.filter(playlist => playlist.id !== action.payload.id),
             };
         default:
             return state;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { enterEditMode, leaveEditMode, startSavingPlaylist } from './actions';
+import { enterEditMode, leaveEditMode, startSavingPlaylist, startDeletingPlaylist } from './actions';
 
 
 export function Playlist(props) {
@@ -26,6 +26,10 @@ export function Playlist(props) {
         }));
     }
 
+    const onDelete = () => {
+        dispatch(startDeletingPlaylist(playlist));
+    }
+
     if(playlist.isEditing) {
         return (
             <div className="playlist" id="playlist-object">
@@ -38,6 +42,7 @@ export function Playlist(props) {
 
                 <button onClick={onSave}>Save</button>
                 <button onClick={onCancel}>Cancel</button>
+                <button onClick={onDelete}>Delete</button>
             </div>
         );     
     } else {

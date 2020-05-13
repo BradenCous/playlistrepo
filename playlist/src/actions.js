@@ -4,6 +4,7 @@ export const Action = Object.freeze({
     EnterEditMode: 'EnterEditMode',
     LeaveEditMode: 'LeaveEditMode',
     FinishSavingPlaylist: 'FinishSavingPlaylist',
+    FinishDeletingPlaylist: 'FinishDeletingPlaylist',
 });
 
 export function loadPlaylists(playlists) {
@@ -23,6 +24,13 @@ export function finishAddingPlaylist(playlist) {
 export function finishSavingPlaylist(playlist) {
     return {
         type: Action.FinishSavingPlaylist,
+        payload: playlist,
+    };
+}
+
+export function finishDeletingPlaylist(playlist) {
+    return {
+        type: Action.FinishDeletingPlaylist,
         payload: playlist,
     };
 }
@@ -102,6 +110,23 @@ export function startSavingPlaylist(playlist) {
             .then(data => {
                 if (data.ok) {
                     dispatch(finishSavingPlaylist(playlist));
+                }
+            })
+        .catch(e => console.error(e));
+    }
+}
+
+export function startDeletingPlaylist(playlist) {
+    const options = {
+        method: 'DELETE',
+    };
+    return dispatch => {
+        fetch(`${host}/playlists/${playlist.id}`, options)
+            .then(checkForErrors)
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    dispatch(finishDeletingPlaylist(playlist));
                 }
             })
         .catch(e => console.error(e));
