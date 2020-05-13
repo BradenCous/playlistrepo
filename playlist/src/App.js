@@ -1,11 +1,24 @@
-import React from 'react';
-
+import React, { useEffect } from 'react';
 import './App.css';
+import { Playlist } from './Playlist';
+import { useSelector, useDispatch } from 'react-redux';
+import { loadDB } from './actions';
+
 
 function App() {
+  const playlists = useSelector(state => state.playlists);
+  const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    dispatch(loadDB());
+  }, [dispatch]);
+  
+
   return (
-    <div className="App">
-      Here is some stuff (REACT)
+    <div className="playlists-root">
+      (REACT)
+      {playlists.map(playlist => <Playlist key={playlist.id} playlist={playlist} />)}
     </div>
   );
 }
