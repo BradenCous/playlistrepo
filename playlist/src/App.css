@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+#playlist-object {
+  display: flex;
+  flex-direction: row;
+  background-color: green;
+  outline-style: solid;
+  min-height: 20px;
+  margin: 10px;
+}

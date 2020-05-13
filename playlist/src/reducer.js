@@ -11,7 +11,45 @@ function reducer(state = initialState, action) {
             return {
                 ...state,
                 playlists: action.payload,
-            }
+            };
+        case Action.FinishAddingPlaylist:
+            return {
+                ...state,
+                playlists: [action.payload, ...state.playlists],
+            };
+        case Action.EnterEditMode:
+            return {
+                   ...state,
+                playlists: state.playlists.map(playlist => {
+                    if (playlist.name === action.payload.name && playlist.data === action.payload.data) {
+                        return {...playlist, isEditing: true};
+                    } else {
+                        return playlist;
+                    }
+                }),
+            };
+        case Action.LeaveEditMode:
+            return {
+                    ...state,
+                playlists: state.playlists.map(playlist => {
+                    if (playlist.id === action.payload.id) {
+                        return {...playlist, isEditing: undefined};
+                    } else {
+                        return playlist;
+                    }
+                }),
+            };
+        case Action.FinishSavingPlaylist:
+            return {
+                    ...state,
+                playlists: state.playlists.map(playlist => {
+                    if (playlist.id === action.payload.id) {
+                        return action.payload;
+                    } else {
+                        return playlist;
+                    }
+                }),
+            };
         default:
             return state;
     }
