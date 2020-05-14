@@ -22,8 +22,8 @@ function App() {
   }
   
   return (
-    <div className="playlists-root">
-      (REACT)
+    <div className="App">
+      <h1>REACT</h1>
       <button onClick={onAdd}>New Playlist</button>
       {playlists.map(playlist => <Playlist key={playlist.id} playlist={playlist} />)}
     </div>
