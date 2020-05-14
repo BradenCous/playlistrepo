@@ -47,12 +47,17 @@ export function Playlist(props) {
         );     
     } else {
         return (
-            <div className="playlist" id="playlist-object">
-                <button onClick={onEdit}>Edit</button>
+            <div id="playlist-root">
+                <div className="playlist" id="playlist-object">
+                    <button onClick={onEdit} id="playlist-button">
+                        <span className="name">{playlist.name}</span>
+                        <span className="data">{playlist.data}</span>
+                    </button>
             
-                <span className="name">{playlist.name}</span>
-                <span className="data">{playlist.data}</span>
+                
+                </div>
             </div>
+            
         );
     }
 

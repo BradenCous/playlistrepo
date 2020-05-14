@@ -73,7 +73,7 @@ export function loadDB() {
 }
 
 export function startAddingPlaylist(name, data) {
-    const playlist = {name: '', data: ''};
+    const playlist = {name: name, data: data};
     const options = {
         method: 'POST',
         headers: {
