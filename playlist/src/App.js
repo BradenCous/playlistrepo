@@ -42,12 +42,6 @@ function App() {
         </Switch>
       </div>
     </Router>
-
-
-
-
-      
-      
     </div>
   );
 }
@@ -61,7 +55,7 @@ function Home() {
   }, [dispatch]);
  
   const onAdd = () => {
-    dispatch(startAddingPlaylist());
+    dispatch(startAddingPlaylist("New Playlist", "https://www.spotify.com/us/&https://developer.spotify.com/assets/branding-guidelines/icon3@2x.png"));
   }
 
   return (

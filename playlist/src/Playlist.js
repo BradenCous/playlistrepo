@@ -8,8 +8,31 @@ export function Playlist(props) {
     const playlist = props.playlist;
     const dispatch = useDispatch();
 
+    const getPlaylistUrlFromData = (data) => {
+        if (data !== null && data.includes("&")) {
+            var str = data;
+            str = data.substring(0, data.indexOf("&"));
+            return str;
+        } else {
+            return null
+        }  
+    }
+
+    const getArtworkUrlFromData = (data) => {
+        if (data !== null) {
+            var str = data;
+            str = data.substring(data.indexOf("&") + 1, data.length);
+            return str;
+        } else {
+            return null
+        }  
+    }
+
+
+
     const [name, setName] = useState(playlist.name);
-    const [data, setData] = useState(playlist.data);
+    const [plURL, setplURL] = useState(getPlaylistUrlFromData(playlist.data));
+    const [artURL, setartURL] = useState(getArtworkUrlFromData(playlist.data));
 
     const onEdit = () => {
         dispatch(enterEditMode(playlist));
@@ -24,10 +47,18 @@ export function Playlist(props) {
     }
 
     const onSave = () => {
+        var dataStr = plURL + "&" + artURL;
+        // if (plURL === null) {
+        //     setplURL("https://www.spotify.com/us/");
+        // }
+
+        // if (artURL === null) {
+        //     setartURL("https://developer.spotify.com/assets/branding-guidelines/icon3@2x.png");
+        // }
         dispatch(startSavingPlaylist({
             id: playlist.id,
             name,
-            data,
+            data: dataStr,
         }));
     }
 
@@ -35,15 +66,6 @@ export function Playlist(props) {
         dispatch(startDeletingPlaylist(playlist));
     }
  
-    // const addIfBlank = (dataPiece) => {
-    //     if (dataPiece === null) {
-    //         var current = new Date();
-    //         return "New Playlist" + current;
-    //     } else {
-    //         return dataPiece;
-    //     }
-    // }    
-        
         
     
     if(playlist.isEditing) {
@@ -55,9 +77,14 @@ export function Playlist(props) {
                 setName(e.target.value)}/>
 
 
-                <label>Data: </label>
-                <input type="text" value={data} onChange={e =>
-                setData(e.target.value)}/>
+                <label>Playlist URL: </label>
+                <input type="text" value={plURL} onChange={e =>
+                setplURL(e.target.value)}/>
+
+                <label>Artwork URL: </label>
+                <input type="text" value={artURL} onChange={e =>
+                setartURL(e.target.value)}/>
+
 
                 <button onClick={onSave}>Save</button>
                 <button onClick={onCancel}>Cancel</button>
@@ -76,7 +103,7 @@ export function Playlist(props) {
 
                     {/* <a href={playlist.data} target="_blank">Playlist</a> */}
                     
-                    <img id="artwork" src="https://pro2-bar-s3-cdn-cf6.myportfolio.com/1fabf4ed77f805d754b14c5b7b6b7fb1/08196ebf3a4ad86ddbd1057860ae28c9caae76ca0f80fb65e035d8696cc58e354b3de0fde9bbfb6b_rw_1200.jpg?h=5e43ffa86778caa3e87507b8eb4338fd"></img>
+                    <img id="artwork" src={artURL}></img>
                 </div>
             // </div>
 
