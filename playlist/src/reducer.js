@@ -21,7 +21,7 @@ function reducer(state = initialState, action) {
             return {
                    ...state,
                 playlists: state.playlists.map(playlist => {
-                    if (playlist.name === action.payload.name && playlist.data === action.payload.data) {
+                    if (playlist.id === action.payload.id) {
                         return {...playlist, isEditing: true};
                     } else {
                         return playlist;

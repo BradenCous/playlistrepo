@@ -8,19 +8,18 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
 
 
-function App() {
-  const playlists = useSelector(state => state.playlists);
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    
-    
-    dispatch(loadDB(0));
-  }, [dispatch]);
+function App() {
+  // const playlists = useSelector(state => state.playlists);
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(loadDB(0));
+  // }, [dispatch]);
  
-  const onAdd = () => {
-    dispatch(startAddingPlaylist("NEW PLAYLIST", "NEW DATA"));
-  }
+  // const onAdd = () => {
+  //   dispatch(startAddingPlaylist("NEW PLAYLIST", "NEW DATA"));
+  // }
   
   return (
     <div className="App">
@@ -58,31 +57,34 @@ function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    
-    
-    dispatch(loadDB(0));
+    dispatch(loadDB());
   }, [dispatch]);
  
   const onAdd = () => {
-    dispatch(startAddingPlaylist("NEW PLAYLIST", "NEW DATA"));
+    dispatch(startAddingPlaylist());
   }
 
   return (
-    <div>
-      <h2>Home</h2>
-      {playlists.map(playlist => <Playlist key={playlist.id} playlist={playlist} />)}
+    <div className="root">
+      <div>
+        <h2>Here Are Your Created Playists</h2>
+        <button onClick={onAdd}>New Playlist</button>
+      </div>
+      <div className="playlist-container">
+        {playlists.map(playlist => <Playlist key={playlist.id} playlist={playlist} />)}
+      </div>
+      
+      
     </div>
     
   ); 
 }
 
 function PlaylistCreator() {
-  const playlists = useSelector(state => state.playlists);
+  // const playlists = useSelector(state => state.playlists);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    
-    
     dispatch(loadDB(0));
   }, [dispatch]);
  
