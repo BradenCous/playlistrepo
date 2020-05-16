@@ -39,22 +39,12 @@ export function Playlist(props) {
     }
 
     const onCancel = () => {
-        if (playlist.name === null && playlist.data === null) {
-            dispatch(startDeletingPlaylist(playlist));
-        } else {
             dispatch(leaveEditMode(playlist));
-        }
     }
 
     const onSave = () => {
         var dataStr = plURL + "&" + artURL;
-        // if (plURL === null) {
-        //     setplURL("https://www.spotify.com/us/");
-        // }
-
-        // if (artURL === null) {
-        //     setartURL("https://developer.spotify.com/assets/branding-guidelines/icon3@2x.png");
-        // }
+        console.log(dataStr)
         dispatch(startSavingPlaylist({
             id: playlist.id,
             name,
@@ -66,16 +56,19 @@ export function Playlist(props) {
         dispatch(startDeletingPlaylist(playlist));
     }
  
-        
+    const openPL = () => {
+        window.open(
+            plURL,
+            '_blank'
+          );
+    }
     
     if(playlist.isEditing) {
- 
         return (
             <div className="playlist" id="playlist-object">
                 <label>Name: </label>
                 <input type="text" value={name} onChange={e =>
                 setName(e.target.value)}/>
-
 
                 <label>Playlist URL: </label>
                 <input type="text" value={plURL} onChange={e =>
@@ -93,22 +86,15 @@ export function Playlist(props) {
         );     
     } else {
         return (
-            // <div className="root-container" id="playlist-root">
                 <div className="playlist" id="playlist-object" >
-                    <button onClick={onEdit} id="edit-button" className="edit-button">
-                        ...
-                    </button>
-
-                    {/* <label id="name">{playlist.name}</label> */}
-
-                    {/* <a href={playlist.data} target="_blank">Playlist</a> */}
                     
-                    <img id="artwork" src={artURL}></img>
+                    <img src={artURL} alt="Playlist Artwork" className="artwork" id="artwork"/>
+                    <div className="top-layer">
+                        <p>{name}</p>
+                        <button onClick={openPL} id="goto-button" className="button">Go</button>
+                        <button onClick={onEdit} id="edit-button" className="button">Edit</button>
+                    </div>                    
                 </div>
-            // </div>
-
-            
-            
         );
         
     }

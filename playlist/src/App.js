@@ -5,10 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { loadDB, startAddingPlaylist } from './actions';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
-
-
-
-
 function App() {
   // const playlists = useSelector(state => state.playlists);
   // const dispatch = useDispatch();
@@ -25,7 +21,7 @@ function App() {
     <div className="App">
       <Router>
       <div>
-        <nav>
+        <nav id="header">
           <Link to="/">Playlists     </Link>
           <Link to="/playlistcreator">     Playlist Creator</Link>
         </nav>
@@ -54,15 +50,16 @@ function Home() {
     dispatch(loadDB());
   }, [dispatch]);
  
-  const onAdd = () => {
-    dispatch(startAddingPlaylist("New Playlist", "https://www.spotify.com/us/&https://developer.spotify.com/assets/branding-guidelines/icon3@2x.png"));
-  }
+  
+  // "New Playlist", "https://www.spotify.com/us/&https://developer.spotify.com/assets/branding-guidelines/icon3@2x.png"
+
+  
 
   return (
     <div className="root">
       <div>
-        <h2>Here Are Your Created Playists</h2>
-        <button onClick={onAdd}>New Playlist</button>
+        <h2>Playlist Library:</h2>
+        {/* <button onClick={onAdd}>New Playlist</button> */}
       </div>
       <div className="playlist-container">
         {playlists.map(playlist => <Playlist key={playlist.id} playlist={playlist} />)}
@@ -83,13 +80,18 @@ function PlaylistCreator() {
   }, [dispatch]);
  
   const onAdd = () => {
-    dispatch(startAddingPlaylist("NEW PLAYLIST", "NEW DATA"));
+    dispatch(startAddingPlaylist("New Playlist", "https://www.spotify.com/us/&https://developer.spotify.com/assets/branding-guidelines/icon3@2x.png"));
   }
+
   return (
-    <div>
-      <h2>Playlist Creator</h2>
+    <div id="">
+      <h1>How to Create a New Playlist</h1>
+
+
       <button onClick={onAdd}>New Playlist</button>
     </div>
+
+    
     
   );
 }
