@@ -66,22 +66,22 @@ export function Playlist(props) {
     if(playlist.isEditing) {
         return (
             <div className="playlist" id="playlist-object">
-                <label>Name: </label>
+                <label className="pledit-text">name: </label>
                 <input type="text" value={name} onChange={e =>
                 setName(e.target.value)}/>
 
-                <label>Playlist URL: </label>
+                <label className="pledit-text">playlist url: </label>
                 <input type="text" value={plURL} onChange={e =>
                 setplURL(e.target.value)}/>
 
-                <label>Artwork URL: </label>
+                <label className="pledit-text">artwork url: </label>
                 <input type="text" value={artURL} onChange={e =>
                 setartURL(e.target.value)}/>
 
 
-                <button onClick={onSave}>Save</button>
-                <button onClick={onCancel}>Cancel</button>
-                <button onClick={onDelete}>Delete</button>
+                <button onClick={onSave} id="savebtn" className="scdBtns">save</button>
+                <button onClick={onCancel} id="canbtn" className="scdBtns">cancel</button>
+                <button onClick={onDelete} id="delbtn" className="scdBtns">delete</button>
             </div>
         );     
     } else {
@@ -91,8 +91,8 @@ export function Playlist(props) {
                     <img src={artURL} alt="Playlist Artwork" className="artwork" id="artwork"/>
                     <div className="top-layer">
                         <p>{name}</p>
-                        <button onClick={openPL} id="goto-button" className="button">Go</button>
-                        <button onClick={onEdit} id="edit-button" className="button">Edit</button>
+                        <button onClick={openPL} id="goto-button" className="button">go</button>
+                        <button onClick={onEdit} id="edit-button" className="button">edit</button>
                     </div>                    
                 </div>
         );

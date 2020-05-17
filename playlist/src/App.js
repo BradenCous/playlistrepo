@@ -21,13 +21,6 @@ function App() {
     <div className="App">
       <Router>
       <div>
-        <nav id="header">
-          <Link to="/">Playlists     </Link>
-          <Link to="/playlistcreator">     Playlist Creator</Link>
-        </nav>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/playlistcreator">
             <PlaylistCreator />
@@ -58,14 +51,12 @@ function Home() {
   return (
     <div className="root">
       <div>
-        <h2>Playlist Library:</h2>
-        {/* <button onClick={onAdd}>New Playlist</button> */}
+        <h1>playlist library</h1>
+          <Link to="/playlistcreator" id="creator-link">create</Link>
       </div>
       <div className="playlist-container">
         {playlists.map(playlist => <Playlist key={playlist.id} playlist={playlist} />)}
       </div>
-      
-      
     </div>
     
   ); 
@@ -84,13 +75,30 @@ function PlaylistCreator() {
   }
 
   return (
-    <div id="">
-      <h1>How to Create a New Playlist</h1>
-
-
-      <button onClick={onAdd}>New Playlist</button>
+    <div className="root">
+    <div>
+      <h1>create a new playlist</h1>
+      <Link to="/" id="library-link">library</Link>
     </div>
+    <div className="playlist-container-new">
+      <p>
+      thank you for coming to add to the library<br/><br/>
 
+      after you click the "New Playlist" button at the bottom of this box, you will find a default playlist in the libray<br/><br/>
+      
+      you can give the playlist life by finding it on the library page, hovering over it, and clicking the "edit" button<br/><br/>
+        
+      to help keep things pretty, please have a raw link ready to display your awesome cover art image<br/><br/>
+
+      after clicking "go", a new tab will open with the designated playlist in Spotify<br/><br/>
+
+      enjoy!<br/>
+      </p>
+ 
+      
+    </div>
+    <button onClick={onAdd} id="newpl-button">New Playlist</button>
+  </div>
     
     
   );
