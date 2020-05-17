@@ -5,18 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { loadDB, startAddingPlaylist } from './actions';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 
-function App() {
-  // const playlists = useSelector(state => state.playlists);
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(loadDB(0));
-  // }, [dispatch]);
- 
-  // const onAdd = () => {
-  //   dispatch(startAddingPlaylist("NEW PLAYLIST", "NEW DATA"));
-  // }
-  
+function App() { 
   return (
     <div className="App">
       <Router>
@@ -42,11 +31,6 @@ function Home() {
   useEffect(() => {
     dispatch(loadDB());
   }, [dispatch]);
- 
-  
-  // "New Playlist", "https://www.spotify.com/us/&https://developer.spotify.com/assets/branding-guidelines/icon3@2x.png"
-
-  
 
   return (
     <div className="root">
@@ -63,7 +47,6 @@ function Home() {
 }
 
 function PlaylistCreator() {
-  // const playlists = useSelector(state => state.playlists);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -94,13 +77,10 @@ function PlaylistCreator() {
 
       enjoy!<br/>
       </p>
- 
-      
+
     </div>
     <button onClick={onAdd} id="newpl-button">New Playlist</button>
   </div>
-    
-    
   );
 }
 

@@ -15,7 +15,7 @@ function reducer(state = initialState, action) {
         case Action.FinishAddingPlaylist:
             return {
                 ...state,
-                playlists: [{...action.payload/*, isEditing: true*/}, ...state.playlists],
+                playlists: [{...action.payload}, ...state.playlists],
             };
         case Action.EnterEditMode:
             return {
