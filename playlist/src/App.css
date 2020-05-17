@@ -193,6 +193,10 @@ h1, #creator-link, #library-link {
   padding-top: 0px;
 }
 
+#creator-link:hover, #library-link:hover {
+  color: rgb(194, 194, 194);
+}
+
 #library-link {
   font-size: 30px;
 }
